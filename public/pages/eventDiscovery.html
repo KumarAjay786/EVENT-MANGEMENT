@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Events</title>
+    <link rel="stylesheet" href="../styles/eventDiscovery.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="../scripts/eventDiscovery.js" defer></script>
+</head>
+
+<body>
+    <div class="card1">
+        
+        <div class="topNav">
+            <div class="userNameDiv">Welcome <span id="uName" style="color: white;"></span></div>
+            <div>
+                <select name="cars" id="dropdown" class="selectInput">
+                    <option value="location">Location</option>
+                    <option value="date">Date</option>
+                    <option value="title">Title</option>
+                    <option value="time">Time</option>
+                </select>
+                <input class="searchInput" placeholder="Search Events" type="text" name="" id="searchInput">
+                <svg onclick="searchEvent()" class="svgImage" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </div>
+            <button class="logoutBtn" id="logoutButton"><b>Logout</b></button>
+        </div>
+        <h2></h2>
+    </div>
+    <!-- <div style="text-align: end;" id="addEvent" style="display: none;">
+        <a href="./createEvent.html"><button style="padding: 1rem;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: white;margin-right: 1rem;">Add Event</button></a>
+        
+    </div> -->
+    <!-- <div class="search-bar">
+        <input type="text" id="searchLocation" placeholder="Enter location">
+        <input type="date" id="searchDate" placeholder="Enter date">
+        <button id="searchBtn">Search</button>
+      </div> -->
+  
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <!-- <a href="./event.html" style="text-decoration: none;"> -->
+                <div id="eventsContainer" class="events-container"></div> <!-- Container to display event cards -->
+                <div id="noSearchFound" style="display: none;    display: block;
+                text-align: center;
+                font-size: x-large;
+                color: green;" class="events-container"></div> <!-- Container to display event cards -->
+            <!-- </a> -->
+            
+          </div>
+          <div id="loader" class="loader-backdrop">
+            <div class="loader"></div>
+          </div>
+</body>
+
+</html>

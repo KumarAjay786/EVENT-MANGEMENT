@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking</title>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="../scripts/book.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .booking-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .confirmation-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .payment-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row .col {
+            flex: 1;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .logoutBtn:hover{
+            background-color: yellow;
+            color: #0A7273;
+        }
+
+        .secure {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+
+        /* Loader Backdrop (covers entire page) */
+        .loader-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent backdrop */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            z-index: 1000;
+            /* Ensure it's above all other elements */
+        }
+
+        .show-loader {
+            display: flex;
+            /* Show the loader with backdrop */
+        }
+
+        /* Loader styles */
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .topNav{
+    padding: 0 1rem;height: 4.5rem;background-color: #0A7273;display: flex;justify-content: space-between;align-items: center;
+}
+
+.userNameDiv{
+    color: yellow;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logoutBtn{
+    padding: 10px;
+            background-color: yellow;
+            border: none;
+            color: #0A7273;
+            border-radius: 6px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="topNav">
+        <div class="userNameDiv">Welcome <span id="emailName" style="color: white;"></span></div>
+        <a href="./login.html"><button class="logoutBtn" id="logoutButton"><b>Logout</b></button></a>
+    </div>
+    <div style="display: flex;justify-content: center;align-items: center;margin-top: 2rem;">
+        <div class="booking-container">
+            <div id="bookingPerson" style="display: block;">
+                <h1><span id="eventTitleName"></span>Event Booking</h1>
+                <label for="people">Select Number of People:</label>
+                <select id="people">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                    <option value="7">7 People</option>
+                    <option value="8">8 People</option>
+                    <option value="9">9 People</option>
+                    <option value="10">10 People</option>
+                </select>
+                <button onclick="confirmBooking()" style="background-color: #0A7273;color: white;">Confirm Booking</button>
+
+                <div class="confirmation-message" id="confirmationMessage"></div>
+            </div>
+            <div id="paymentGateway" style="display: none;">
+                <!-- <div class="payment-container"> -->
+                <h2>Payment Gateway</h2>
+                <form action="#" method="POST">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+
+                    <label for="card-holder">Card Holder Name</label>
+                    <input type="text" id="card-holder" placeholder="Full Name" required>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col">
+                            <label for="cvv">CVV</label>
+                            <input type="password" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="text-decoration: none;color: white;background-color: #0A7273;"
+                            onclick="pay()">Pay Now</button>
+                </form>
+
+                <div class="secure">
+                    <p>🔒 Your transaction is secure and encrypted.</p>
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div id="loader" class="loader-backdrop">
+            <div class="loader"></div>
+        </div>
+    </div>
+</body>
+
+</html>

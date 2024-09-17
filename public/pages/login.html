@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+  <script src="../scripts/login.js" defer></script>
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+
+<body>
+    <div id="notification" style="position: absolute;
+    display: none;
+    top: 1rem;
+    right: 1rem;
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    padding: 10px 15px;"></div>
+    <div class="form-container" style="display: flex;">
+        <div style="width: 60%;">
+            <img src="../assets/loginImage.gif" width="450" height="440" alt="" srcset="">
+        </div>
+        <div style="width: 40%;">
+            <div id="loginStatus"></div>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="loginEmail">Email/Username</label>
+                    <input type="text" id="loginEmail" name="loginEmail" onblur="checkEmail()" placeholder="Enter Email" required>
+                    <div id="emailError" class="emailErrDiv">
+                        *
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" onblur="checkPassword()" placeholder="Enter Password" required>
+                    <div id="passwordError" class="passwordErrDiv">
+                        *
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn" style="background-color: #0A7273;" id="login"
+                        >Login</button>
+                </div>
+                <p>Or login with:</p>
+                <div class="social-login" style="display: flex;align-items: center;justify-content: center;">
+                    <img src="../assets/google.png" class="google" id="googleLogin" height="60px" alt=""
+                        style="cursor: pointer;">
+                    <img src="../assets/facebook.png" class="facebook" id="facebook" height="45px" alt=""
+                        style="cursor: pointer;">
+                </div>
+                <div class="forgot-password">
+                    <a href="./forgotPassword.html" style="margin-right: 2rem;color: #0A7273;">Forgot Password?</a>
+                    <a href="./registration.html" style="color: #0A7273;">Sign Up</a>
+                </div>
+                <a href="../index.html" style="color: #0A7273; text-decoration: none; margin-top: 1rem;">Go to Home page</a>
+            </form>
+        </div>
+    </div>
+    <div id="loader" class="loader-backdrop">
+        <div class="loader"></div>
+      </div>
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+body{
+    margin: 0;padding: 0;background-color: #e9e3d5;
+}
+
+.dashboard {
+    width: 80%;
+    margin: auto;
+}
+
+.dashboard h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard .card1 {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.dashboard .card1 h3 {
+    margin-bottom: 10px;
+}
+
+.dashboard button {
+    margin-right: 10px;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+.topNav{
+    padding: 0 1rem;
+    height: 4.5rem;
+    background-color: #7e57c2;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* Events container to arrange event cards */
+  .events-container {
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px; */
+  }
+  
+ /* Event card styling */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 295px; /* Set a fixed width for the card */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-header {
+    /* background-color: #033043; */
+    background-color: #0330431c;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%; /* Ensure header takes full width */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+.card-body {
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding does not exceed card width */
+    max-height: 170px; /* Set a maximum height to prevent overflow */
+    overflow: hidden; /* Hide overflowing content */
+}
+
+/* Handle long text descriptions */
+.card-body p {
+    margin-bottom: 10px;
+    color: #555;
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+
+/* Ensure card footer does not overflow */
+.card-footer {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding does not exceed card width */
+}
+
+.card-footer span {
+    font-weight: bold;
+    color: #333;
+}
+
+
+    /* Loader Backdrop (covers entire page) */
+    .loader-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        z-index: 1000; /* Ensure it's above all other elements */
+      }
+      
+      .show-loader {
+        display: flex; /* Show the loader with backdrop */
+      }
+      
+      /* Loader styles */
+      .loader {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+  
+
+      .topNav{
+        padding: 0 1rem;height: 4.5rem;background-color: #0A7273;display: flex;justify-content: space-between;align-items: center;
+    }
+    
+    .userNameDiv{
+        color: yellow;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .selectInput{
+        padding: 12px;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    
+    .searchInput{
+        width: 450px;height: 38px;border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;border: none;padding-left: 1rem;
+    }
+    
+    .svgImage{
+        width: 30px; cursor: pointer;transform: translate(-45px, 10px);
+    }
+
+    .logoutBtn{
+        padding: 10px;
+                background-color: yellow;
+                border: none;
+                color: #0A7273;
+                border-radius: 6px;
+    }
+  

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/adminEvents.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="../scripts/adminEvents.js" defer></script>
+</head>
+
+<body>
+    <div class="card1">
+        <div class="topNav">
+            <div class="userNameDiv">Welcome <span id="uName" style="color: white;"></span></div>
+            <div>
+                <select name="cars" id="dropdown" class="selectInput">
+                    <option value="location">Location</option>
+                    <option value="date">Date</option>
+                    <option value="title">Title</option>
+                    <option value="time">Time</option>
+                </select>
+                <input class="searchInput" placeholder="Search Events" type="text" name="" id="searchInput">
+                <svg onclick="searchEvent()" class="svgImage" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </div>
+            <button class="logoutBtn" id="logoutButton"><b>Logout</b></button>
+        </div>
+        <br>
+    </div>
+    <div style="text-align: end;" id="addEvent">
+        <a href="./createEvent.html"><button class="addEventBtn"><b>Add Event</b></button></a>
+    </div>
+
+    <div class="container">
+        <h2 id="upcomingEvent">Upcoming Events</h2>
+        <div id="eventsContainer" class="events-container"></div>
+        <div id="noSearchFound" class="events-container noSearch"></div>
+    </div>
+    <div id="loader" class="loader-backdrop">
+        <div class="loader"></div>
+    </div>
+</body>
+
+</html>
